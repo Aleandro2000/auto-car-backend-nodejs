@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  nodejs_app:
+    image: node:18
+    container_name: nodejs_app
+    restart: always
+    ports:
+      - "8081:8081"
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    command: npm start
