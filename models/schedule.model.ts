@@ -38,8 +38,8 @@ const scheduleModel = mongoose.model("schedule", scheduleSchema);
 
 scheduleSchema.pre("save", async function (next) {
   if (this.isNew) {
-    let total = await scheduleModel.find().sort({ id: -1 }).limit(1);
-    this.scheduleId = total.length === 0 ? 1 : Number(total[0].id) + 1;
+    let total = await scheduleModel.find().sort({ scheduleId: -1 }).limit(1);
+    this.scheduleId = total.length === 0 ? 1 : Number(total[0].scheduleId) + 1;
     next();
   }
 });

@@ -31,8 +31,8 @@ const carModel = mongoose.model("car", carSchema);
 
 carSchema.pre("save", async function (next) {
   if (this.isNew) {
-    let total = await carModel.find().sort({ id: -1 }).limit(1);
-    this.carId = total.length === 0 ? 1 : Number(total[0].id) + 1;
+    let total = await carModel.find().sort({ carId: -1 }).limit(1);
+    this.carId = total.length === 0 ? 1 : Number(total[0].carId) + 1;
     next();
   }
 });

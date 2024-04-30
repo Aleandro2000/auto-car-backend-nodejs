@@ -4,12 +4,12 @@ import carModel from "../models/car.model";
 export default {
   create: async function (request: FastifyRequest, reply: FastifyReply) {
     try {
-      const { registration_number, chassis_series, car_id } =
+      const { registration_number, chassis_series, client_id } =
         request.body as any;
       const car = new carModel({
         registration_number,
         chassis_series,
-        car_id,
+        client_id,
       });
       await car.save();
       reply.send({
@@ -42,7 +42,7 @@ export default {
   },
   update: async function (request: FastifyRequest, reply: FastifyReply) {
     try {
-      const { registration_number, chassis_series, car_id } =
+      const { registration_number, chassis_series, client_id } =
         request.body as any;
       const { id } = request.params as any;
       const car = await carModel.findOneAndUpdate(
@@ -50,7 +50,7 @@ export default {
         {
           registration_number,
           chassis_series,
-          car_id,
+          client_id,
         }
       );
       reply.send({

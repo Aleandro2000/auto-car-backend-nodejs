@@ -41,8 +41,8 @@ const clientModel = mongoose.model("client", clientSchema);
 
 clientSchema.pre("save", async function (next) {
   if (this.isNew) {
-    let total = await clientModel.find().sort({ id: -1 }).limit(1);
-    this.clientId = total.length === 0 ? 1 : Number(total[0].id) + 1;
+    let total = await clientModel.find().sort({ clientId: -1 }).limit(1);
+    this.clientId = total.length === 0 ? 1 : Number(total[0].clientId) + 1;
     next();
   }
 });
